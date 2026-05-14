@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"d:\\\\GitTashkenta\\\\uzmulk\" -Force)",
+      "Bash(Select-Object Name, Mode)",
+      "Bash(Get-ChildItem -Path \"d:\\\\GitTashkenta\\\\uzmulk\\\\src\\\\pages\" -Recurse -Include \"*.jsx\", \"*.js\", \"*.tsx\", \"*.ts\")",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "PowerShell(New-Item -ItemType Directory -Force \"src/pages/client/services\")",
+      "PowerShell(Get-ChildItem -Path \"D:\\\\EPG\\\\main_front\\\\src\" -Recurse | Where-Object { !$_.PSIsContainer } | Select-Object FullName)",
+      "PowerShell(New-Item -ItemType Directory -Path \"d:\\\\GitTashkenta\\\\uzmulk\\\\src\\\\utils\\\\constants\" -Force)",
+      "PowerShell(dir \"d:\\\\GitTashkenta\\\\uzmulk\" -Force | Where-Object { !$_.PSIsContainer } | Select-Object Name)",
+      "PowerShell(cmd /c \"dir d:\\\\GitTashkenta\\\\uzmulk /b /a-d\")",
+      "PowerShell(robocopy \"d:\\\\GitTashkenta\\\\uzmulk\" \"d:\\\\GitTashkenta\\\\uzmulkadmin\" /E /XD node_modules .git /XF package-lock.json)",
+      "PowerShell(cmd /c \"dir d:\\\\GitTashkenta\\\\uzmulkadmin /b\")",
+      "Bash(del \"d:\\\\GitTashkenta\\\\uzmulk\\\\.env.development\")",
+      "Bash(cd \"D:\\\\EPG\\\\main_front\" && pwd)",
+      "Read(//d/EPG/main_front/**)",
+      "Bash(Get-ChildItem -Path \"d:\\\\GitTashkenta\\\\uzmulk\\\\src\\\\pages\\\\client\\\\services\" -Recurse -Force)",
+      "Bash(npm install *)",
+      "PowerShell(robocopy \"D:\\\\GitTashkenta\\\\uzmulk\" \"D:\\\\GitTashkenta\\\\uzmullk\" /E /XD \".git\" /NFL /NDL /NJH /NJS)"
+    ]
+  }
+}
