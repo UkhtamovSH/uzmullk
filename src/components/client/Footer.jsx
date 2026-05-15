@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import brandLogo from "@/assets/brandDark.svg";
 import { useTranslation } from "react-i18next";
 
 const SOCIAL_LINKS = [
@@ -48,7 +49,7 @@ export default function Footer() {
     <footer className="container w-full pt-[60px]">
       <div className="border-y border-[#EBEBEB] flex flex-col md:flex-row justify-between w-full items-start pt-[25px] pb-[17px] gap-6 md:gap-0">
         <div>
-          <Link to="/"><img src="/src/assets/brandDark.svg" alt="Uzmulk" className="h-8" /></Link>
+          <Link to="/"><img src={brandLogo} alt="Uzmulk" className="h-8" /></Link>
         </div>
 
         <div className="flex gap-10">

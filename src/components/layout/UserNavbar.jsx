@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import useAuthStore from "@/store/useAuthStore";
 import LangDropdown from "@/components/ui/LangDropdown";
 import AddCircleIcon from "@/assets/svg/AddCircleIcon";
+import brandLogo from "@/assets/brandDark2.svg";
 import CadastreModal from "@/components/client/home/CadastreModal";
 
 const LANGS = [
@@ -72,7 +73,7 @@ export default function UserNavbar() {
       <div className={`sticky top-0 z-30 w-full transition-all duration-300 shadow-[0px_1px_0px_0px_#E2E5EE] ${scrolled ? "bg-white/95 backdrop-blur-sm shadow-md" : "bg-transparent"}`}>
       <header className="container flex items-center py-[35px]">
         <Link to="/" className="flex items-center shrink-0">
-          <img src="/src/assets/brandDark2.svg" alt="Uzmulk" className="h-7" />
+          <img src={brandLogo} alt="Uzmulk" className="h-7" />
         </Link>
 
         {/* Desktop nav */}
@@ -177,7 +178,7 @@ export default function UserNavbar() {
         {/* Drawer header */}
         <div className="flex items-center justify-between px-5 py-5 border-b border-gray-100">
           <Link to="/" onClick={closeDrawer}>
-            <img src="/src/assets/brandDark2.svg" alt="Uzmulk" className="h-6" />
+            <img src={brandLogo} alt="Uzmulk" className="h-6" />
           </Link>
           <button
             onClick={closeDrawer}

@@ -1,4 +1,5 @@
 import React from "react";
+import frameGroup from "@/assets/framegroup.png";
 import { useTranslation } from "react-i18next";
 
 const Capabilities = () => {
@@ -14,7 +15,7 @@ const Capabilities = () => {
       </p>
 
       <div className="w-full overflow-hidden">
-        <img src="/src/assets/framegroup.png" alt="Capabilities" className="w-full h-auto" />
+        <img src={frameGroup} alt="Capabilities" className="w-full h-auto" />
       </div>
     </section>
   );
