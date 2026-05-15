@@ -2,7 +2,6 @@ import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import UserLayout from "@/layouts/UserLayout";
 import ProfileLayout from "@/layouts/ProfileLayout";
-import ProtectedRoute from "@/components/ProtectedRoute";
 
 const LoginPage          = lazy(() => import("@/pages/client/login"));
 const OneId              = lazy(() => import("@/pages/client/oneid"));
@@ -49,7 +48,7 @@ export const routes = [
 
       {
         path: "profile",
-        element: <ProtectedRoute><ProfileLayout /></ProtectedRoute>,
+        element: <ProfileLayout />,
         children: [
           { index: true,              element: <MainProfile /> },
           { path: "personal",         element: <PersonalDataPage /> },
