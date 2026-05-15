@@ -55,7 +55,6 @@ function Stepper({ current }) {
         return (
           <React.Fragment key={num}>
             <div className="flex flex-col items-center shrink-0">
-              eee
               <div
                 style={{
                   width: 70,

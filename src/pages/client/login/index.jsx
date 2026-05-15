@@ -161,7 +161,7 @@ export default function LoginPage() {
   const [canResend, setCanResend] = useState(false);
   const [countdownKey, setCountdownKey] = useState(0);
 
-  const destination = location.state?.from?.pathname ?? "/home";
+  const destination = location.state?.from?.pathname ?? "/";
 
   if (isAuthenticated) return <Navigate to={destination} replace />;
 
