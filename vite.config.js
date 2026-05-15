@@ -20,6 +20,8 @@ const CSP = [
 export default defineConfig({
   plugins: [react()],
 
+  base: "/uzmullk/",
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
