@@ -291,7 +291,13 @@ export default function UserNavbar() {
       </div>
 
       {addModalOpen && (
-        <CadastreModal onClose={() => setAddModalOpen(false)} />
+        <CadastreModal
+          onClose={() => setAddModalOpen(false)}
+          onNext={(cadastre) => {
+            setAddModalOpen(false);
+            navigate("/profile/cards", { state: { cadastre } });
+          }}
+        />
       )}
     </>
   );
