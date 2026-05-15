@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import brandLogo from "@/assets/brandDark.svg";
+import appQr from "@/assets/appqr.png";
+import googleQr from "@/assets/googleqr.png";
 import { useTranslation } from "react-i18next";
 
 const SOCIAL_LINKS = [
@@ -9,8 +11,8 @@ const SOCIAL_LINKS = [
 ];
 
 const QR_IMAGES = [
-  { src: "/src/assets/appqr.png", alt: "App Store QR" },
-  { src: "/src/assets/googleqr.png", alt: "Google Play QR" },
+  { src: appQr, alt: "App Store QR" },
+  { src: googleQr, alt: "Google Play QR" },
 ];
 
 const LINK_CLS =

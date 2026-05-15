@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import bannerBg from "/src/assets/banner_bg.png";
-import bannerApp from "/src/assets/banner_app.png";
-import bannerGoogle from "/src/assets/banner_google.png";
-import brandWhite from "/src/assets/brandWhite.svg";
+import bannerBg from "@/assets/banner_bg.png";
+import bannerApp from "@/assets/banner_app.png";
+import bannerGoogle from "@/assets/banner_google.png";
+import brandWhite from "@/assets/brandWhite.svg";
 
 export default function AppBanner() {
   const { t } = useTranslation();
