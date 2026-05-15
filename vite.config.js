@@ -20,6 +20,8 @@ const CSP = [
 export default defineConfig({
   plugins: [react()],
 
+  base: "/uzmullk/",
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -43,7 +45,7 @@ export default defineConfig({
     // No source maps in production — avoids exposing original source code
     sourcemap: false,
     // Minify output to reduce attack surface readability
-    minify: "esbuild",
+    minify: "oxc",
     rollupOptions: {
       output: {
         // Hashed filenames prevent caching of stale bundles
