@@ -54,11 +54,13 @@ export default function OneIdPage() {
             "radial-gradient(92.45% 92.45% at 6.87% 5.93%, #00A5FE 34%, #0043DE 100%)",
         }}
       >
-        <Link to="/"><img
-          src={brandWhite}
-          alt="Uzmulk"
-          className="h-[34px] w-auto object-left object-contain"
-        /></Link>
+        <Link to="/">
+          <img
+            src={brandWhite}
+            alt="Uzmulk"
+            className="h-[34px] w-auto object-left object-contain"
+          />
+        </Link>
 
         <div className="flex-1 flex flex-col justify-center gap-4 py-8 px-16 text-center">
           <h2 className="text-white text-xl font-bold leading-snug">
@@ -86,7 +88,9 @@ export default function OneIdPage() {
         <div className="flex-1 flex items-center justify-center px-8 py-10">
           <div className="w-full max-w-[380px] space-y-7">
             <div className="flex justify-center">
-              <Link to="/"><img src={brandDark} alt="Uzmulk" className="h-[38px] w-auto" /></Link>
+              <Link to="/">
+                <img src={brandDark} alt="Uzmulk" className="h-[38px] w-auto" />
+              </Link>
             </div>
 
             <div className="text-center space-y-1.5">

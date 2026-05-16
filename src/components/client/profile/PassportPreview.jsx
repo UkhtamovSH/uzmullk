@@ -7,11 +7,7 @@ import PassportFront from "@/assets/Front.png";
  * Bir joyda o'zgartirish — barcha foydalanuvchilarga (sidebar mini,
  * mulklar grid karta, modal ichidagi karta) avtomatik tushadi.
  */
-export default function PassportPreview({
-  card = {},
-  className = "",
-  style,
-}) {
+export default function PassportPreview({ card = {}, className = "", style }) {
   return (
     <div
       className={`relative overflow-hidden ${className}`}
@@ -57,7 +53,7 @@ export default function PassportPreview({
       {/* MANZIL */}
       <div
         className="absolute"
-        style={{ left: "2.8%", right: "26%", top: "66%" }}
+        style={{ left: "2.8%", right: "26%", top: "68%" }}
       >
         <p
           className="font-medium text-[#090A0A] leading-snug line-clamp-2"

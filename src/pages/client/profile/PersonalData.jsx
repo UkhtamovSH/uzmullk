@@ -4,23 +4,16 @@ import PersonalDataComp from "@/components/client/profile/PersonalData";
 export default function PersonalDataPage() {
   const user = useAuthStore((s) => s.user);
 
-  const handleUpdate = (updatedData) => {
-    // TODO: connect to API
-    console.log("update personal data", updatedData);
-  };
-
   return (
     <PersonalDataComp
       userData={{
-        name:      user?.name ?? "",
-        phone:     user?.phone ?? "",
-        email:     user?.email ?? "",
-        pinfl:     user?.pinfl ?? "",
-        passport:  user?.passport ?? "",
-        birthDate: user?.birthDate ?? "",
-        address:   user?.address ?? "",
+        name:      user?.name      ?? "Закиров Шухрат Касымджанович",
+        phone:     user?.phone     ?? "+998 90 123 45 67",
+        pinfl:     user?.pinfl     ?? "34567890987",
+        passport:  user?.passport  ?? "AD 1830473",
+        birthDate: user?.birthDate ?? "14.02.1990",
+        address:   user?.address   ?? "Ташкент, Юнусабадский район, 15",
       }}
-      onUpdate={handleUpdate}
     />
   );
 }

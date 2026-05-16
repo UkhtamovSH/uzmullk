@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useOutletContext } from "react-router-dom";
 import AddCircleIcon from "@/assets/svg/AddCircleIcon";
 import PassportPreview from "./PassportPreview";
 
-/* ── Katta passport karta ────────────────────────────────────────────── */
-function PassportCardFull({ card, onClick }) {
+function PassportCardFull({ card, onClick, restrictedLabel }) {
   const isRestricted = card.status === "taqiq";
 
   return (
@@ -16,7 +17,7 @@ function PassportCardFull({ card, onClick }) {
       {isRestricted && (
         <div className="bg-red-500 py-2.5 text-center">
           <span className="text-white text-[12px] font-black uppercase tracking-widest">
-            Taqiq
+            {restrictedLabel}
           </span>
         </div>
       )}
@@ -24,8 +25,7 @@ function PassportCardFull({ card, onClick }) {
   );
 }
 
-/* ── Bo'sh holat ─────────────────────────────────────────────────────── */
-function EmptyState() {
+function EmptyState({ title, desc }) {
   return (
     <div className="py-16 flex flex-col items-center gap-4 text-center">
       <div className="relative w-[120px] h-[80px]">
@@ -40,22 +40,14 @@ function EmptyState() {
         </div>
       </div>
       <div>
-        <p className="text-[14px] font-semibold text-[#090A0A]">
-          Hali kadastr kartasi qo'shilmagan
-        </p>
-        <p className="text-xs text-gray-400 mt-1 max-w-[220px] mx-auto leading-relaxed">
-          Ma'lumot olish uchun kadastr kartasini qo'shishingiz kerak
+        <p className="text-[14px] font-semibold text-[#090A0A]">{title}</p>
+        <p className="text-xs text-gray-400 mt-1 max-w-[260px] mx-auto leading-relaxed">
+          {desc}
         </p>
       </div>
     </div>
   );
 }
-
-/* ── Asosiy komponent ────────────────────────────────────────────────── */
-const TABS = [
-  { key: "my",  label: "Mening mulklarim" },
-  { key: "all", label: "Barcha mulklar" },
-];
 
 export default function MyCards({
   cards = [],
@@ -63,68 +55,82 @@ export default function MyCards({
   onSelectCard,
   loading = false,
 }) {
+  const { t } = useTranslation();
+  const { setHeaderRight } = useOutletContext?.() ?? {};
   const [activeTab, setActiveTab] = useState("my");
 
-  return (
-    <div className="bg-white rounded-2xl border border-[#E2E5EE] overflow-hidden">
+  useEffect(() => {
+    if (!setHeaderRight) return;
 
-      {/* ── Sarlavha ── */}
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 px-6 py-5 border-b border-[#E2E5EE]">
+    const TABS = [
+      { key: "my", label: t("tabMyProperties") },
+      { key: "all", label: t("tabAllProperties") },
+    ];
 
-        {/* Sarlavha matni */}
-        <h2 className="text-[18px] font-bold text-[#090A0A]">
-          Mening kartalarim
-        </h2>
-
-        {/* Filter tablar — kulrang pill konteyner ichida */}
-        <div className="flex items-center bg-[#F0F2F8] rounded-full p-1 gap-0.5">
+    setHeaderRight(
+      <>
+        <div className="flex items-center bg-[#F1F5F9] rounded-full p-1 gap-0.5">
           {TABS.map(({ key, label }) => (
             <button
               key={key}
               onClick={() => setActiveTab(key)}
-              className={`px-5 py-1.5 rounded-full text-[13px] font-semibold transition-all ${
+              className={`px-5 py-1.5 rounded-full text-[13px] font-semibold transition-all whitespace-nowrap ${
                 activeTab === key
-                  ? "bg-[#172AB4] text-white shadow-sm"
-                  : "text-gray-500 hover:text-gray-700"
+                  ? "text-white"
+                  : "text-[#475569] hover:text-[#18181B]"
               }`}
+              style={
+                activeTab === key
+                  ? {
+                      background:
+                        "linear-gradient(94.21deg, #00A5FE 10.94%, #0076FE 58.07%)",
+                    }
+                  : undefined
+              }
             >
               {label}
             </button>
           ))}
         </div>
 
-        {/* Karta qo'shish — oq fon + chegara */}
         <button
           onClick={onAddCard}
-          className="ml-auto flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl text-[#172AB4] text-[14px] font-semibold hover:border-[#172AB4]/40 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-white border border-[#E4E7EC] rounded-xl text-[#172AB4] text-[14px] font-semibold hover:border-[#172AB4]/40 transition-colors whitespace-nowrap"
         >
           <AddCircleIcon />
-          Karta qo'shish
+          {t("addCardBtn")}
         </button>
-      </div>
+      </>,
+    );
 
-      {/* ── Kontent ── */}
-      <div className="p-5">
-        {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[1, 2].map((i) => (
-              <div key={i} className="h-[220px] rounded-2xl bg-gray-100 animate-pulse" />
-            ))}
-          </div>
-        ) : cards.length === 0 ? (
-          <EmptyState />
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {cards.map((card) => (
-              <PassportCardFull
-                key={card.id}
-                card={card}
-                onClick={onSelectCard}
-              />
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
+    return () => setHeaderRight(null);
+  }, [setHeaderRight, activeTab, onAddCard, t]);
+
+  return (
+    <>
+      {loading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[1, 2].map((i) => (
+            <div
+              key={i}
+              className="h-[220px] rounded-2xl bg-gray-100 animate-pulse"
+            />
+          ))}
+        </div>
+      ) : cards.length === 0 ? (
+        <EmptyState title={t("emptyCardsTitle")} desc={t("emptyCardsDesc")} />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+          {cards.map((card) => (
+            <PassportCardFull
+              key={card.id}
+              card={card}
+              onClick={onSelectCard}
+              restrictedLabel={t("restrictedBadge")}
+            />
+          ))}
+        </div>
+      )}
+    </>
   );
 }

@@ -42,7 +42,7 @@ function RequestsTabs({ tab, onChange }) {
         onClick={() => onChange("sent")}
         className={`text-[13px] font-semibold px-[39px] py-[7px] rounded-full transition-colors ${
           tab === "sent"
-            ? "text-white bg-[linear-gradient(94.21deg,_#00A5FE_10.94%,_#0076FE_58.07%)]"
+            ? "text-white bg-[linear-gradient(94.21deg,_#00A5FE_10.94%,_#172AB4_58.07%)]"
             : "text-[#475569] hover:text-[#090A0A]"
         }`}
       >
@@ -53,7 +53,7 @@ function RequestsTabs({ tab, onChange }) {
         onClick={() => onChange("received")}
         className={`text-[13px] font-semibold px-[39px] py-[7px] rounded-full transition-colors ${
           tab === "received"
-            ? "text-white bg-[linear-gradient(94.21deg,_#00A5FE_10.94%,_#0076FE_58.07%)]"
+            ? "text-white bg-[linear-gradient(94.21deg,_#00A5FE_10.94%,_#172AB4_58.07%)]"
             : "text-[#475569] hover:text-[#090A0A]"
         }`}
       >

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   NavLink,
   Outlet,
@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Menu, X, LogOut } from "lucide-react";
+import BrushIcon from "@/assets/svg/BrushIcon";
 import useAuthStore from "@/store/useAuthStore";
 import FrameIcon from "@/assets/svg/FrameIcon";
 import CardsIcon from "@/assets/svg/CardsIcon";
@@ -31,11 +32,11 @@ const HEADER_CONFIG = {
   "services-history": { tKey: "navServicesHistory" },
 };
 
-function SectionHeader({ tKey }) {
+function SectionHeader({ tKey, showEditAction = false, onEditClick, right }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
-    <div className="bg-white border border-[#E4E7EC] rounded-[20px] px-[34px] py-5 mb-5 flex flex-col md:flex-row md:items-center gap-3 md:gap-2 justify-between">
+    <div className="bg-white border border-[#E4E7EC] rounded-[20px] px-[34px] py-4 mb-5 flex flex-col md:flex-row md:items-center gap-3 md:gap-4 justify-between">
       <div
         className="inline-flex items-center gap-2 cursor-pointer"
         onClick={() => navigate("/profile")}
@@ -43,10 +44,23 @@ function SectionHeader({ tKey }) {
         <div className="text-[#000] hover:text-gray-700 transition-colors">
           <ArrowCircleLeftIcon />
         </div>
-        <span className="text-[15px] font-semibold text-[#18181B]">
+        <span className="text-[15px] font-semibold text-[#18181B] whitespace-nowrap">
           {t(tKey)}
         </span>
       </div>
+
+      {right && <div className="flex items-center gap-3 md:ml-auto flex-wrap">{right}</div>}
+
+      {showEditAction && (
+        <button
+          type="button"
+          onClick={onEditClick}
+          className="self-start md:self-auto hover:opacity-70 transition-opacity"
+          aria-label="edit"
+        >
+          <BrushIcon />
+        </button>
+      )}
     </div>
   );
 }
@@ -155,16 +169,30 @@ function Sidebar({ onClose }) {
 
 export default function ProfileLayout() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [editClickTick, setEditClickTick] = useState(0);
   const isPropertyDetail = useMatch("/profile/cards/:id/*");
   const location = useLocation();
   const segment = location.pathname.split("/").filter(Boolean).pop();
   const headerConfig =
     !isPropertyDetail && segment !== "profile" ? HEADER_CONFIG[segment] : null;
+  const showEditAction = segment === "personal";
+  const [headerRight, setHeaderRight] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
 
   return (
     <>
       <div className="container py-4">
-        {headerConfig && <SectionHeader {...headerConfig} />}
+        {headerConfig && (
+          <SectionHeader
+            {...headerConfig}
+            showEditAction={showEditAction}
+            onEditClick={() => setEditClickTick((c) => c + 1)}
+            right={headerRight}
+          />
+        )}
 
         <div className="flex gap-[21px] items-start">
           {/* Desktop sidebar — property detail da yashiriladi */}
@@ -210,7 +238,7 @@ export default function ProfileLayout() {
               </div>
             )}
 
-            <Outlet />
+            <Outlet context={{ editClickTick, setHeaderRight }} />
           </div>
         </div>
       </div>

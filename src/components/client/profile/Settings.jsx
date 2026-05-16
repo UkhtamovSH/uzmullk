@@ -22,27 +22,24 @@ function Toggle({ checked, onChange }) {
 export default function Settings({ settings = {}, onSave, loading = false }) {
   const [form, setForm] = useState({
     notifications: settings.notifications ?? true,
-    language:      settings.language ?? "uz",
-    darkMode:      settings.darkMode ?? false,
+    language: settings.language ?? "uz",
+    darkMode: settings.darkMode ?? false,
   });
 
   return (
-    <div className="bg-white rounded-2xl border border-[#E2E5EE] overflow-hidden">
-      <div className="flex items-center gap-3 px-6 py-5 border-b border-[#E2E5EE]">
-        <div className="w-10 h-10 rounded-xl bg-[#172AB4]/10 flex items-center justify-center">
-          <Settings2 size={20} className="text-[#172AB4]" />
-        </div>
-        <h2 className="text-[16px] font-semibold text-[#090A0A]">Sozlamalar</h2>
-      </div>
-
-      <div className="p-6 flex flex-col gap-6">
+    <div className="">
+      <div className="flex flex-col gap-6">
         {/* Notifications */}
         <div className="flex items-center justify-between p-4 rounded-xl border border-[#E2E5EE]">
           <div className="flex items-center gap-3">
             <Bell size={18} className="text-gray-400" />
             <div>
-              <p className="text-sm font-semibold text-[#090A0A]">Bildirishnomalar</p>
-              <p className="text-xs text-gray-400">Email va SMS orqali xabardor bo'lish</p>
+              <p className="text-sm font-semibold text-[#090A0A]">
+                Bildirishnomalar
+              </p>
+              <p className="text-xs text-gray-400">
+                Email va SMS orqali xabardor bo'lish
+              </p>
             </div>
           </div>
           <Toggle
@@ -56,8 +53,12 @@ export default function Settings({ settings = {}, onSave, loading = false }) {
           <div className="flex items-center gap-3">
             <Moon size={18} className="text-gray-400" />
             <div>
-              <p className="text-sm font-semibold text-[#090A0A]">Qorang'i rejim</p>
-              <p className="text-xs text-gray-400">Interfeys rangini o'zgartirish</p>
+              <p className="text-sm font-semibold text-[#090A0A]">
+                Qorang'i rejim
+              </p>
+              <p className="text-xs text-gray-400">
+                Interfeys rangini o'zgartirish
+              </p>
             </div>
           </div>
           <Toggle
@@ -88,15 +89,6 @@ export default function Settings({ settings = {}, onSave, loading = false }) {
             ))}
           </div>
         </div>
-
-        <button
-          onClick={() => onSave?.(form)}
-          disabled={loading}
-          className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#172AB4] text-white text-sm font-semibold hover:bg-[#1322A0] transition-colors disabled:opacity-60"
-        >
-          <Save size={16} />
-          Saqlash
-        </button>
       </div>
     </div>
   );

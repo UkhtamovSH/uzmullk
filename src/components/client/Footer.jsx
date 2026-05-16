@@ -16,7 +16,7 @@ const QR_IMAGES = [
 ];
 
 const LINK_CLS =
-  "block text-[14px] font-medium text-[#090A0A] hover:text-[#0076FE] transition-colors";
+  "block text-[14px] font-medium text-[#090A0A] hover:text-[#172AB4] transition-colors";
 
 const NavItem = ({ label, to, href }) =>
   to ? (
@@ -41,17 +41,19 @@ export default function Footer() {
   const { t } = useTranslation();
 
   const NAV_LINKS = [
-    { label: t('footerAbout'),   to: "/about" },
-    { label: t('footerPrivacy'), to: "/privacy" },
-    { label: t('footerOffer'),   to: "/offer" },
-    { label: t('footerHelp'),    to: "/help" },
+    { label: t("footerAbout"), to: "/about" },
+    { label: t("footerPrivacy"), to: "/privacy" },
+    { label: t("footerOffer"), to: "/offer" },
+    { label: t("footerHelp"), to: "/help" },
   ];
 
   return (
     <footer className="container w-full pt-[60px]">
       <div className="border-y border-[#EBEBEB] flex flex-col md:flex-row justify-between w-full items-start pt-[25px] pb-[17px] gap-6 md:gap-0">
         <div>
-          <Link to="/"><img src={brandLogo} alt="Uzmulk" className="h-8" /></Link>
+          <Link to="/">
+            <img src={brandLogo} alt="Uzmulk" className="h-8" />
+          </Link>
         </div>
 
         <div className="flex gap-10">
@@ -77,11 +79,11 @@ export default function Footer() {
         </p>
         <div className="md:text-right">
           <p className="text-[15px] font-medium text-[#1F2022]">
-            {t('footerSupport')}
+            {t("footerSupport")}
           </p>
           <a
             href="tel:+998219010101"
-            className="text-[22px] font-bold text-[#1F2022] hover:text-[#0076FE] transition-colors"
+            className="text-[22px] font-bold text-[#1F2022] hover:text-[#172AB4] transition-colors"
           >
             +998 21 901 01 01
           </a>

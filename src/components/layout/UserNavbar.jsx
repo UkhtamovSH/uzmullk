@@ -54,7 +54,9 @@ export default function UserNavbar() {
 
   useEffect(() => {
     document.body.style.overflow = drawerOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [drawerOpen]);
 
   const handleLogout = () => {
@@ -70,95 +72,105 @@ export default function UserNavbar() {
 
   return (
     <>
-      <div className={`sticky top-0 z-30 w-full transition-all duration-300 shadow-[0px_1px_0px_0px_#E2E5EE] ${scrolled ? "bg-white/95 backdrop-blur-sm shadow-md" : "bg-transparent"}`}>
-      <header className="container flex items-center py-[35px]">
-        <Link to="/" className="flex items-center shrink-0">
-          <img src={brandLogo} alt="Uzmulk" className="h-7" />
-        </Link>
+      <div
+        className={`sticky top-0 z-30 w-full transition-all duration-300 shadow-[0px_1px_0px_0px_#E2E5EE] bg-white`}
+      >
+        <header className="container flex items-center py-[35px]">
+          <Link to="/" className="flex items-center shrink-0">
+            <img src={brandLogo} alt="Uzmulk" className="h-7" />
+          </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6 ml-8">
-          <NavLink to="/" className={navLinkClass}>{t("home")}</NavLink>
-          <NavLink to="/services" className={navLinkClass}>{t("services")}</NavLink>
-        </nav>
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-6 ml-8">
+            <NavLink to="/" className={navLinkClass}>
+              {t("home")}
+            </NavLink>
+            <NavLink to="/services" className={navLinkClass}>
+              {t("services")}
+            </NavLink>
+          </nav>
 
-        {/* Desktop actions */}
-        <div className="hidden md:flex items-center gap-3 ml-auto">
-          <button
-            onClick={() => setAddModalOpen(true)}
-            className="flex items-center gap-1.5 px-4 py-2 border border-gray-200 rounded-xl bg-white text-sm font-semibold text-[#172AB4] hover:border-[#172AB4]/40 transition-colors"
-          >
-            <AddCircleIcon />
-            {t("addObject")}
-          </button>
-
-          {isAuthenticated && user ? (
-            <div className="relative" ref={userRef}>
-              <button
-                onClick={() => setUserOpen((v) => !v)}
-                className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <div className="w-7 h-7 rounded-full bg-[#172AB4]/10 flex items-center justify-center shrink-0">
-                  <span className="text-xs font-bold text-[#172AB4]">
-                    {user.name?.[0]?.toUpperCase() ?? "U"}
-                  </span>
-                </div>
-                <span className="text-sm font-medium text-gray-900 hidden sm:block">
-                  {user.name}
-                </span>
-                <ChevronDown
-                  size={14}
-                  className={`text-gray-400 transition-transform duration-200 ${userOpen ? "rotate-180" : ""}`}
-                />
-              </button>
-
-              {userOpen && (
-                <div className="absolute right-0 mt-1.5 w-52 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden z-50">
-                  <div className="px-4 py-3 border-b border-gray-100">
-                    <p className="text-sm font-semibold text-gray-900 truncate">{user.name}</p>
-                    <p className="text-xs text-gray-400 capitalize mt-0.5">{user.role}</p>
-                  </div>
-                  {canAccessDashboard && (
-                    <Link
-                      to="/dashboard"
-                      onClick={() => setUserOpen(false)}
-                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-                    >
-                      <LayoutDashboard size={15} className="text-gray-400" />
-                      {t("controlPanel")}
-                    </Link>
-                  )}
-                  <button
-                    onClick={handleLogout}
-                    className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors"
-                  >
-                    <LogOut size={15} />
-                    {t("logout")}
-                  </button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <Link
-              to="/oneid"
-              className="px-4 py-2 border border-gray-200 rounded-xl bg-white text-sm font-semibold text-gray-800 hover:border-gray-400 transition-colors"
+          {/* Desktop actions */}
+          <div className="hidden md:flex items-center gap-3 ml-auto">
+            <button
+              onClick={() => setAddModalOpen(true)}
+              className="flex items-center gap-1.5 px-4 py-2 border border-gray-200 rounded-xl bg-white text-sm font-semibold text-[#172AB4] hover:border-[#172AB4]/40 transition-colors"
             >
-              {t("loginLink")}
-            </Link>
-          )}
+              <AddCircleIcon />
+              {t("addObject")}
+            </button>
 
-          <LangDropdown />
-        </div>
+            {isAuthenticated && user ? (
+              <div className="relative" ref={userRef}>
+                <button
+                  onClick={() => setUserOpen((v) => !v)}
+                  className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg hover:bg-gray-100 transition-colors"
+                >
+                  <div className="w-7 h-7 rounded-full bg-[#172AB4]/10 flex items-center justify-center shrink-0">
+                    <span className="text-xs font-bold text-[#172AB4]">
+                      {user.name?.[0]?.toUpperCase() ?? "U"}
+                    </span>
+                  </div>
+                  <span className="text-sm font-medium text-gray-900 hidden sm:block">
+                    {user.name}
+                  </span>
+                  <ChevronDown
+                    size={14}
+                    className={`text-gray-400 transition-transform duration-200 ${userOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
 
-        {/* Mobile: hamburger */}
-        <button
-          onClick={() => setDrawerOpen(true)}
-          className="md:hidden ml-auto p-2 rounded-lg hover:bg-gray-100 transition-colors"
-          aria-label="Menyu"
-        >
-          <Menu size={24} className="text-gray-700" />
-        </button>
-      </header>
+                {userOpen && (
+                  <div className="absolute right-0 mt-1.5 w-52 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden z-50">
+                    <div className="px-4 py-3 border-b border-gray-100">
+                      <p className="text-sm font-semibold text-gray-900 truncate">
+                        {user.name}
+                      </p>
+                      <p className="text-xs text-gray-400 capitalize mt-0.5">
+                        {user.role}
+                      </p>
+                    </div>
+                    {canAccessDashboard && (
+                      <Link
+                        to="/dashboard"
+                        onClick={() => setUserOpen(false)}
+                        className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                      >
+                        <LayoutDashboard size={15} className="text-gray-400" />
+                        {t("controlPanel")}
+                      </Link>
+                    )}
+                    <button
+                      onClick={handleLogout}
+                      className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors"
+                    >
+                      <LogOut size={15} />
+                      {t("logout")}
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                to="/oneid"
+                className="px-4 py-2 border border-gray-200 rounded-xl bg-white text-sm font-semibold text-gray-800 hover:border-gray-400 transition-colors"
+              >
+                {t("loginLink")}
+              </Link>
+            )}
+
+            <LangDropdown />
+          </div>
+
+          {/* Mobile: hamburger */}
+          <button
+            onClick={() => setDrawerOpen(true)}
+            className="md:hidden ml-auto p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            aria-label="Menyu"
+          >
+            <Menu size={24} className="text-gray-700" />
+          </button>
+        </header>
       </div>
 
       {/* Mobile drawer overlay */}
@@ -221,7 +233,10 @@ export default function UserNavbar() {
         {/* Add object */}
         <div className="px-4 pt-4">
           <button
-            onClick={() => { setAddModalOpen(true); closeDrawer(); }}
+            onClick={() => {
+              setAddModalOpen(true);
+              closeDrawer();
+            }}
             className="w-full flex items-center justify-center gap-1.5 px-4 py-2.5 border border-gray-200 rounded-xl bg-white text-sm font-semibold text-[#172AB4] hover:border-[#172AB4]/40 transition-colors"
           >
             <AddCircleIcon />
@@ -240,8 +255,12 @@ export default function UserNavbar() {
                   </span>
                 </div>
                 <div className="min-w-0">
-                  <p className="text-sm font-semibold text-gray-900 truncate">{user.name}</p>
-                  <p className="text-xs text-gray-400 capitalize">{user.role}</p>
+                  <p className="text-sm font-semibold text-gray-900 truncate">
+                    {user.name}
+                  </p>
+                  <p className="text-xs text-gray-400 capitalize">
+                    {user.role}
+                  </p>
                 </div>
               </div>
               {canAccessDashboard && (
