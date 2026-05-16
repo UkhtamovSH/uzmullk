@@ -1,80 +1,103 @@
 import { Link } from "react-router-dom";
-import {
-  FileText, MessageSquare, Receipt,
-  UserCircle, ChevronRight, Shield, CreditCard,
-} from "lucide-react";
+import { useTranslation } from "react-i18next";
 import useAuthStore from "@/store/useAuthStore";
-import Building2Icon from "@/assets/svg/Building2Icon";
-
-const STAT_CARDS = [
-  { label: "Mulklar",    value: 0, icon: Building2Icon,     color: "bg-blue-50 text-[#172AB4]",   to: "property" },
-  { label: "Arizalar",   value: 0, icon: FileText,       color: "bg-green-50 text-green-600",   to: "applications" },
-  { label: "So'rovlar",  value: 0, icon: MessageSquare,  color: "bg-yellow-50 text-yellow-600", to: "requests" },
-  { label: "To'lovlar",  value: 0, icon: Receipt,        color: "bg-purple-50 text-purple-600", to: "payments" },
-];
-
-const QUICK_LINKS = [
-  { to: "personal",         icon: UserCircle,    label: "Shaxsiy ma'lumotlar",  desc: "Ma'lumotlaringizni tahrirlang" },
-  { to: "cards",            icon: CreditCard,    label: "Mening kartalarim",    desc: "Karta qo'shish va boshqarish" },
-  { to: "property",         icon: Building2Icon,     label: "Mening mulklarim",     desc: "Barcha obiektlaringiz" },
-  { to: "access",           icon: Shield,        label: "Kirish huquqlari",     desc: "Boshqalarga berilgan huquqlar" },
-];
+import FrameIcon from "@/assets/svg/FrameIcon";
+import CardsIcon from "@/assets/svg/CardsIcon";
+import NotifStatusIcon from "@/assets/svg/NotifStatusIcon";
+import KeySquareIcon from "@/assets/svg/KeySquareIcon";
+import TimerIcon from "@/assets/svg/TimerIcon";
+import ClockIcon from "@/assets/svg/ClockIcon";
+import SettingsIcon from "@/assets/svg/SettingsIcon";
+import HomeSideIcon from "@/assets/svg/HomeSideIcon";
+import ArrowUpRightIcon from "@/assets/svg/ArrowUpRightIcon";
 
 export default function MainProfile() {
+  const { t } = useTranslation();
   const user = useAuthStore((s) => s.user);
 
+  const STATS = [
+    { to: "cards", icon: CardsIcon, label: t("navCards"), value: 3 },
+    { to: "applications", icon: NotifStatusIcon, label: t("navApplications"), value: 2 },
+    { to: "requests", icon: HomeSideIcon, label: t("navRequests"), value: 5 },
+    { to: "payments", icon: TimerIcon, label: t("navPayments"), value: 12 },
+  ];
+
+  const QUICK_LINKS = [
+    { to: "personal", icon: FrameIcon, label: t("navPersonal") },
+    { to: "cards", icon: CardsIcon, label: t("navCards") },
+    { to: "applications", icon: NotifStatusIcon, label: t("navApplications") },
+    { to: "settings", icon: SettingsIcon, label: t("navSettings") },
+    { to: "access", icon: KeySquareIcon, label: t("navAccess") },
+    { to: "services-history", icon: ClockIcon, label: t("navServicesHistory") },
+  ];
+
   return (
-    <div className="flex flex-col gap-6">
-      {/* Welcome banner */}
-      <div className="rounded-2xl bg-gradient-to-r from-[#172AB4] to-[#2D4ED8] px-6 py-6 text-white">
-        <p className="text-sm text-white/70 font-medium">Xush kelibsiz 👋</p>
-        <h1 className="text-xl font-bold mt-1">{user?.name ?? "Foydalanuvchi"}</h1>
-        <p className="text-sm text-white/60 mt-1">{user?.phone ?? ""}</p>
+    <>
+      {/* Welcome header — SectionHeader style */}
+      <div className="bg-white border border-[#E4E7EC] rounded-[20px] px-[34px] py-5 mb-5 flex items-center justify-between gap-3">
+        <div className="min-w-0">
+          <p className="text-sm text-gray-500">Xush kelibsiz</p>
+          <h1 className="text-[20px] font-semibold text-[#090A0A] truncate mt-0.5">
+            {user?.name ?? "Foydalanuvchi"}
+          </h1>
+        </div>
+        <div className="w-12 h-12 rounded-full bg-[#F1F5F9] flex items-center justify-center shrink-0 overflow-hidden">
+          {user?.avatar ? (
+            <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
+          ) : (
+            <span className="text-lg font-bold text-[#18181B]">
+              {user?.name?.[0]?.toUpperCase() ?? "U"}
+            </span>
+          )}
+        </div>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {STAT_CARDS.map(({ label, value, icon: Icon, color, to }) => (
+      {/* Stats — service-tile style */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+        {STATS.map(({ to, icon: Icon, label, value }) => (
           <Link
             key={to}
             to={to}
-            className="bg-white rounded-2xl border border-[#E2E5EE] p-4 flex flex-col gap-3 hover:border-[#172AB4]/30 hover:shadow-sm transition-all group"
+            className="min-h-[140px] flex flex-col justify-between bg-[#F1F5F9] p-4 sm:p-5 rounded-[20px] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-white group"
           >
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${color}`}>
-              <Icon size={20} />
+            <div className="flex items-start justify-between">
+              <div className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-[#18181B]">
+                <Icon size={28} />
+              </div>
+              <ArrowUpRightIcon />
             </div>
-            <div>
-              <p className="text-2xl font-bold text-[#090A0A]">{value}</p>
-              <p className="text-xs text-gray-400 font-medium mt-0.5">{label}</p>
+            <div className="mt-4">
+              <p className="text-[28px] font-bold text-[#090A0A] leading-none">
+                {value}
+              </p>
+              <p className="text-[13px] text-gray-500 font-medium mt-1.5">
+                {label}
+              </p>
             </div>
           </Link>
         ))}
       </div>
 
-      {/* Quick links */}
-      <div className="bg-white rounded-2xl border border-[#E2E5EE] overflow-hidden">
-        <p className="px-6 py-4 text-sm font-semibold text-gray-400 border-b border-[#E2E5EE]">
-          Tezkor o'tish
-        </p>
-        <div className="p-3 flex flex-col gap-1">
-          {QUICK_LINKS.map(({ to, icon: Icon, label, desc }) => (
-            <Link
-              key={to}
-              to={to}
-              className="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-[#172AB4]/5 transition-all group"
-            >
-              <div className="w-10 h-10 rounded-xl bg-[#172AB4]/8 flex items-center justify-center shrink-0">
-                <Icon size={18} className="text-[#172AB4]" />
+      {/* Quick links — tile grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {QUICK_LINKS.map(({ to, icon: Icon, label }) => (
+          <Link
+            key={to}
+            to={to}
+            className="min-h-[100px] flex items-center justify-between gap-3 bg-[#F1F5F9] p-4 sm:p-5 rounded-[20px] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-white group"
+          >
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-[#18181B]">
+                <Icon size={28} />
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-[14px] font-semibold text-[#090A0A]">{label}</p>
-                <p className="text-xs text-gray-400 mt-0.5">{desc}</p>
-              </div>
-              <ChevronRight size={16} className="text-gray-300 group-hover:text-[#172AB4] transition-colors shrink-0" />
-            </Link>
-          ))}
-        </div>
+              <p className="text-[15px] sm:text-[17px] font-semibold text-[#090A0A] leading-snug truncate">
+                {label}
+              </p>
+            </div>
+            <ArrowUpRightIcon />
+          </Link>
+        ))}
       </div>
-    </div>
+    </>
   );
 }
