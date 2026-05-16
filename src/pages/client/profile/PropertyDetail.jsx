@@ -23,6 +23,7 @@ import {
 import useCardsStore from "@/store/useCardsStore";
 import ArrowCircleLeftIcon from "@/assets/svg/ArrowCircleLeftIcon";
 import ZapIcon from "@/assets/svg/ZapIcon";
+import PassportFront from "@/assets/Front.png";
 
 /* ── Har bir sahifa uchun sarlavha konfiguratsiyasi ─────────────────── */
 const HEADER_CONFIG = {
@@ -59,67 +60,57 @@ function SectionHeader({ tKey }) {
 function MiniPassport({ card }) {
   return (
     <div
-      className="rounded-xl overflow-hidden relative shadow-sm border border-green-200"
+      className="relative rounded-xl overflow-hidden shadow-sm mx-auto"
       style={{
-        background:
-          "linear-gradient(135deg,#c8e6c9 0%,#a5d6a7 15%,#80cbc4 35%,#b2dfdb 55%,#c5e1a5 75%,#dcedc8 100%)",
+        width: "284px",
+        height: "180px",
+        backgroundImage: `url(${PassportFront})`,
+        backgroundSize: "100% 100%",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
+      {/* OBYEKT TURI value */}
       <div
-        className="absolute inset-0 opacity-[0.07]"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg,#006400 0,#006400 1px,transparent 1px,transparent 7px)," +
-            "repeating-linear-gradient(-45deg,#006400 0,#006400 1px,transparent 1px,transparent 7px)",
-        }}
-      />
-      <div className="relative p-3">
-        <div className="flex items-start justify-between mb-2">
-          <div>
-            <p className="text-[7px] font-semibold text-green-900/60 uppercase tracking-widest leading-tight">
-              Ko'chmas mulk ob'yektining
-            </p>
-            <p className="text-[13px] font-black text-green-900 uppercase leading-tight tracking-wide">
-              KADASTR PASPORTI
-            </p>
-          </div>
-          <div className="shrink-0 w-8 h-6 rounded-[2px] overflow-hidden border border-green-700/20 flex flex-col">
-            <div className="flex-1 bg-[#1DC7E0]" />
-            <div className="h-[1px] bg-white" />
-            <div className="flex-1 bg-white" />
-            <div className="h-[1px] bg-white" />
-            <div className="flex-1 bg-[#1AA01A]" />
-          </div>
-        </div>
-        <div className="space-y-1">
-          <div>
-            <p className="text-[7px] text-green-800/50 uppercase font-bold tracking-widest">
-              Obyekt turi
-            </p>
-            <p className="text-[10px] font-semibold text-green-900">
-              {card.propertyType ?? "—"}
-            </p>
-          </div>
-          <div>
-            <p className="text-[7px] text-green-800/50 uppercase font-bold tracking-widest">
-              Kadastr raqami
-            </p>
-            <p
-              className="text-[12px] font-black text-green-900 tracking-widest"
-              style={{ fontFamily: "monospace" }}
-            >
-              {card.cadastre ?? "—"}
-            </p>
-          </div>
-          <div>
-            <p className="text-[7px] text-green-800/50 uppercase font-bold tracking-widest">
-              Manzil
-            </p>
-            <p className="text-[9px] font-medium text-green-900 leading-snug">
-              {card.address ?? "—"}
-            </p>
-          </div>
-        </div>
+        className="absolute"
+        style={{ left: "8px", right: "45px", top: "60px" }}
+      >
+        <p
+          className="font-semibold text-[#090A0A] leading-tight truncate"
+          style={{ fontSize: "7px" }}
+        >
+          {card.propertyType ?? "—"}
+        </p>
+      </div>
+
+      {/* KADASTR RAQAMI value */}
+      <div
+        className="absolute"
+        style={{ left: "8px", right: "45px", top: "87px" }}
+      >
+        <p
+          className="font-medium text-[#090A0A] truncate"
+          style={{
+            fontSize: "12px",
+            fontFamily: "monospace",
+            letterSpacing: "0.02em",
+          }}
+        >
+          {card.cadastre ?? "—"}
+        </p>
+      </div>
+
+      {/* MANZIL value */}
+      <div
+        className="absolute"
+        style={{ left: "8px", right: "75px", top: "120px" }}
+      >
+        <p
+          className="font-medium text-[#090A0A] leading-snug"
+          style={{ fontSize: "7px" }}
+        >
+          {card.address ?? "—"}
+        </p>
       </div>
     </div>
   );
@@ -206,8 +197,8 @@ export default function PropertyDetail() {
       {headerConfig && <SectionHeader {...headerConfig} />}
       <div className="flex gap-[21px] items-start">
         {/* ════ DESKTOP: Chap sidebar ════ */}
-        <div className="hidden md:flex flex-col w-[260px] shrink-0 bg-white border border-[#E2E5EE] rounded-2xl overflow-hidden sticky top-[90px]">
-          <div className="p-4">
+        <div className="hidden md:flex flex-col w-[284px] shrink-0 bg-white border border-[#E2E5EE] rounded-2xl overflow-hidden sticky top-[90px]">
+          <div>
             <MiniPassport card={card} />
           </div>
           <div className="mx-4 h-px bg-[#E2E5EE]" />
@@ -226,7 +217,7 @@ export default function PropertyDetail() {
 
         {/* ════ MOBILE: Drawer panel ════ */}
         <div
-          className={`fixed top-0 left-0 h-full w-[290px] bg-white z-50 flex flex-col shadow-2xl transition-transform duration-300 md:hidden ${
+          className={`fixed top-0 left-0 h-full w-[284px] bg-white z-50 flex flex-col shadow-2xl transition-transform duration-300 md:hidden ${
             drawerOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >

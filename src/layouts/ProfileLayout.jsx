@@ -2,9 +2,18 @@ import { useState } from "react";
 import { NavLink, Outlet, useNavigate, useMatch } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
-  UserCircle, CreditCard, FileText,
-  Settings2, MessageSquare, Shield, Receipt,
-  ClipboardList, ChevronRight, Menu, X, LogOut,
+  UserCircle,
+  CreditCard,
+  FileText,
+  Settings2,
+  MessageSquare,
+  Shield,
+  Receipt,
+  ClipboardList,
+  ChevronRight,
+  Menu,
+  X,
+  LogOut,
 } from "lucide-react";
 import useAuthStore from "@/store/useAuthStore";
 import Building2Icon from "@/assets/svg/Building2Icon";
@@ -16,15 +25,24 @@ function Sidebar({ onClose }) {
   const navigate = useNavigate();
 
   const NAV_ITEMS = [
-    { to: "personal",         icon: UserCircle,    label: t("navPersonal") },
-    { to: "cards",            icon: CreditCard,    label: t("navCards") },
-    { to: "property",         icon: Building2Icon, label: t("navProperty") },
-    { to: "applications",     icon: FileText,      label: t("navApplications"), badge: 2 },
-    { to: "settings",         icon: Settings2,     label: t("navSettings") },
-    { to: "requests",         icon: MessageSquare, label: t("navRequests") },
-    { to: "access",           icon: Shield,        label: t("navAccess") },
-    { to: "payments",         icon: Receipt,       label: t("navPayments") },
-    { to: "services-history", icon: ClipboardList, label: t("navServicesHistory") },
+    { to: "personal", icon: UserCircle, label: t("navPersonal") },
+    { to: "cards", icon: CreditCard, label: t("navCards") },
+    { to: "property", icon: Building2Icon, label: t("navProperty") },
+    {
+      to: "applications",
+      icon: FileText,
+      label: t("navApplications"),
+      badge: 2,
+    },
+    { to: "settings", icon: Settings2, label: t("navSettings") },
+    { to: "requests", icon: MessageSquare, label: t("navRequests") },
+    { to: "access", icon: Shield, label: t("navAccess") },
+    { to: "payments", icon: Receipt, label: t("navPayments") },
+    {
+      to: "services-history",
+      icon: ClipboardList,
+      label: t("navServicesHistory"),
+    },
   ];
 
   const linkClass = ({ isActive }) =>
@@ -46,7 +64,11 @@ function Sidebar({ onClose }) {
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-full bg-[#172AB4]/10 flex items-center justify-center shrink-0 overflow-hidden">
             {user?.avatar ? (
-              <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
+              <img
+                src={user.avatar}
+                alt={user.name}
+                className="w-full h-full object-cover"
+              />
             ) : (
               <span className="text-lg font-bold text-[#172AB4]">
                 {user?.name?.[0]?.toUpperCase() ?? "U"}
@@ -80,7 +102,11 @@ function Sidebar({ onClose }) {
               <>
                 <Icon
                   size={18}
-                  className={isActive ? "text-white" : "text-gray-400 group-hover:text-[#172AB4]"}
+                  className={
+                    isActive
+                      ? "text-white"
+                      : "text-gray-400 group-hover:text-[#172AB4]"
+                  }
                 />
                 <span className="flex-1">{label}</span>
                 {badge ? (
@@ -91,7 +117,9 @@ function Sidebar({ onClose }) {
                   <ChevronRight
                     size={14}
                     className={
-                      isActive ? "text-white/70" : "text-gray-300 group-hover:text-[#172AB4]/40"
+                      isActive
+                        ? "text-white/70"
+                        : "text-gray-300 group-hover:text-[#172AB4]/40"
                     }
                   />
                 )}
@@ -124,10 +152,9 @@ export default function ProfileLayout() {
   return (
     <div className="container py-6 md:py-10">
       <div className="flex gap-6 items-start">
-
         {/* Desktop sidebar — property detail da yashiriladi */}
         {!isPropertyDetail && (
-          <div className="hidden md:flex flex-col w-[260px] shrink-0 bg-white border border-[#E2E5EE] rounded-2xl overflow-hidden sticky top-[90px]">
+          <div className="hidden md:flex flex-col w-[284px] shrink-0 bg-white border border-[#E2E5EE] rounded-2xl overflow-hidden sticky top-[90px]">
             <Sidebar />
           </div>
         )}
@@ -162,7 +189,9 @@ export default function ProfileLayout() {
               >
                 <Menu size={20} className="text-gray-600" />
               </button>
-              <span className="text-base font-semibold text-[#090A0A]">Profil</span>
+              <span className="text-base font-semibold text-[#090A0A]">
+                Profil
+              </span>
             </div>
           )}
 
