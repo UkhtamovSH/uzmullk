@@ -139,7 +139,7 @@ export default function PropertyDetail() {
       {headerConfig && <SectionHeader {...headerConfig} />}
       <div className="flex gap-[21px] items-start">
         {/* ════ DESKTOP: Chap sidebar ════ */}
-        <div className="hidden md:flex flex-col w-[284px] shrink-0 bg-white border border-[#E2E5EE] rounded-2xl overflow-hidden sticky top-[90px]">
+        <div className="hidden md:flex flex-col w-[284px] shrink-0 bg-white border border-[#E2E5EE] rounded-2xl overflow-hidden sticky top-[120px]">
           <div>
             <MiniPassport card={card} />
           </div>

@@ -27,7 +27,11 @@
       "mcp__claude_ai_Figma__get_screenshot",
       "mcp__claude_ai_Figma__get_design_context",
       "mcp__claude_ai_Figma__get_metadata",
-      "Bash(curl -s -o \"C:\\\\Users\\\\user\\\\figma_screenshot.png\" \"https://www.figma.com/api/mcp/asset/88139641-0156-4090-a518-088a9befb713\")"
+      "Bash(curl -s -o \"C:\\\\Users\\\\user\\\\figma_screenshot.png\" \"https://www.figma.com/api/mcp/asset/88139641-0156-4090-a518-088a9befb713\")",
+      "Bash(npm -v)",
+      "Bash(claude --version)",
+      "Bash(claude mcp *)",
+      "Bash(curl -s -o \"C:\\\\Users\\\\user\\\\figma_frame.png\" \"https://www.figma.com/api/mcp/asset/9820d91d-b72a-4cd3-8791-9b6bbfd9fe21\")"
     ]
   }
 }
