@@ -96,24 +96,6 @@ export default function PropertyMap() {
 
   return (
     <div className=" flex flex-col gap-5">
-      {/* ── Manzil qatori ── */}
-      {card?.address && (
-        <div className="flex items-start gap-3 px-4 py-3 bg-[#F8F9FB] rounded-xl">
-          <MapPin size={16} className="text-[#172AB4] shrink-0 mt-0.5" />
-          <div>
-            <p className="text-[11px] text-gray-400 font-medium mb-0.5">
-              {card.propertyType}
-            </p>
-            <p className="text-[13px] font-semibold text-[#090A0A] leading-snug">
-              {card.address}
-            </p>
-            <p className="text-[11px] text-gray-400 font-mono mt-0.5">
-              {card.cadastre}
-            </p>
-          </div>
-        </div>
-      )}
-
       {/* ── Xarita ── */}
       <div
         className="relative w-full rounded-2xl overflow-hidden border border-[#E2E5EE]"

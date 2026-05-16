@@ -54,7 +54,7 @@ function PersonCard({ person }) {
     { label: t("pinfl"), value: person.pinfl, mono: true },
   ];
 
-  return <DetailsCard title={person.name} rows={rows} bg="#F8F9FB" />;
+  return <DetailsCard title={person.name} rows={rows} />;
 }
 
 export default function Residents() {
@@ -62,7 +62,7 @@ export default function Residents() {
 
   return (
     <div className="">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
         {MOCK_RESIDENTS.map((p) => (
           <PersonCard key={p.id} person={p} />
         ))}
