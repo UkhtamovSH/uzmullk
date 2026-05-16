@@ -66,7 +66,7 @@ export default function MyCardsPage() {
   };
 
   const handleSelectCard = (card) => {
-    navigate(`/profile/cards/${card.id}`);
+    navigate(`/profile/cards/${card.id}/services`);
   };
 
   return (
