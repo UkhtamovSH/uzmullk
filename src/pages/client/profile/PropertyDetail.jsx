@@ -29,16 +29,46 @@ const HEADER_CONFIG = {
   tenants: { tKey: "tenantsTitle" },
   map: { tKey: "propMap" },
   services: { tKey: "propServices" },
-  requests: { tKey: "propRequests" },
+  requests: { tKey: "requestsTitle" },
   access: { tKey: "propAccess" },
 };
 
-function SectionHeader({ tKey }) {
+function RequestsTabs({ tab, onChange }) {
+  const { t } = useTranslation();
+  return (
+    <div className="inline-flex items-center bg-[#F1F5F9] rounded-full p-1">
+      <button
+        type="button"
+        onClick={() => onChange("sent")}
+        className={`text-[13px] font-semibold px-[39px] py-[7px] rounded-full transition-colors ${
+          tab === "sent"
+            ? "text-white bg-[linear-gradient(94.21deg,_#00A5FE_10.94%,_#0076FE_58.07%)]"
+            : "text-[#475569] hover:text-[#090A0A]"
+        }`}
+      >
+        {t("sentRequests")}
+      </button>
+      <button
+        type="button"
+        onClick={() => onChange("received")}
+        className={`text-[13px] font-semibold px-[39px] py-[7px] rounded-full transition-colors ${
+          tab === "received"
+            ? "text-white bg-[linear-gradient(94.21deg,_#00A5FE_10.94%,_#0076FE_58.07%)]"
+            : "text-[#475569] hover:text-[#090A0A]"
+        }`}
+      >
+        {t("receivedRequests")}
+      </button>
+    </div>
+  );
+}
+
+function SectionHeader({ tKey, rightSlot }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const goBack = () => navigate("/profile/cards");
   return (
-    <div className="bg-white border border-[#E4E7EC] rounded-[20px] p-[34px] mb-5 flex items-center gap-2">
+    <div className="bg-white border border-[#E4E7EC] rounded-[20px] px-[34px] py-5 mb-5 flex flex-col md:flex-row md:items-center gap-3 md:gap-2 justify-between">
       <div
         className="inline-flex items-center gap-2 cursor-pointer"
         onClick={goBack}
@@ -48,6 +78,7 @@ function SectionHeader({ tKey }) {
         </div>
         <span className="text-sm text-gray-500">{t(tKey)}</span>
       </div>
+      {rightSlot}
     </div>
   );
 }
@@ -122,6 +153,7 @@ export default function PropertyDetail() {
   const location = useLocation();
   const card = useCardsStore((s) => s.getCard(id));
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [requestsTab, setRequestsTab] = useState("sent");
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -133,10 +165,20 @@ export default function PropertyDetail() {
   const DEBT = "2 467 000";
   const segment = location.pathname.split("/").pop();
   const headerConfig = HEADER_CONFIG[segment];
+  const isRequests = segment === "requests";
 
   return (
     <>
-      {headerConfig && <SectionHeader {...headerConfig} />}
+      {headerConfig && (
+        <SectionHeader
+          {...headerConfig}
+          rightSlot={
+            isRequests ? (
+              <RequestsTabs tab={requestsTab} onChange={setRequestsTab} />
+            ) : null
+          }
+        />
+      )}
       <div className="flex gap-[21px] items-start">
         {/* ════ DESKTOP: Chap sidebar ════ */}
         <div className="hidden md:flex flex-col w-[284px] shrink-0 bg-white border border-[#E2E5EE] rounded-2xl overflow-hidden sticky top-[120px]">
@@ -233,7 +275,7 @@ export default function PropertyDetail() {
             </button>
           </div>
 
-          <Outlet context={{ card }} />
+          <Outlet context={{ card, requestsTab }} />
         </div>
       </div>
     </>

@@ -174,5 +174,16 @@
   "regType":        "Ro'yxat turi",
   "pinfl":          "PINFL",
   "permanent":      "Doimiy",
-  "temporary":      "Vaqtinchalik"
+  "temporary":      "Vaqtinchalik",
+
+  "requestsTitle":     "So'rovlar",
+  "sentRequests":      "Yuborilgan",
+  "receivedRequests":  "Qabul qilingan",
+  "cadastreNumber":    "Kadastr raqami",
+  "sendDateTime":      "Yuborilgan sana va vaqti",
+  "requestStatus":     "Holati",
+  "statusAccepted":    "Qabul qilindi",
+  "statusRejected":    "Rad etildi",
+  "statusPending":     "Kutilmoqda",
+  "noRequests":        "So'rovlar mavjud emas"
 }

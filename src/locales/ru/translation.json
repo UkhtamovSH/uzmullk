@@ -174,5 +174,16 @@
   "regType":        "Тип прописки",
   "pinfl":          "ПИНФЛ",
   "permanent":      "Постоянная",
-  "temporary":      "Временная"
+  "temporary":      "Временная",
+
+  "requestsTitle":     "Запросы",
+  "sentRequests":      "Отправленные",
+  "receivedRequests":  "Полученные",
+  "cadastreNumber":    "Номер кадастра",
+  "sendDateTime":      "Дата и время отправки",
+  "requestStatus":     "Статус",
+  "statusAccepted":    "Принято",
+  "statusRejected":    "Отказано",
+  "statusPending":     "В ожидании",
+  "noRequests":        "Запросов нет"
 }
