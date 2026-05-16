@@ -17,7 +17,13 @@
       "Read(//d/EPG/main_front/**)",
       "Bash(Get-ChildItem -Path \"d:\\\\GitTashkenta\\\\uzmulk\\\\src\\\\pages\\\\client\\\\services\" -Recurse -Force)",
       "Bash(npm install *)",
-      "PowerShell(robocopy \"D:\\\\GitTashkenta\\\\uzmulk\" \"D:\\\\GitTashkenta\\\\uzmullk\" /E /XD \".git\" /NFL /NDL /NJH /NJS)"
+      "PowerShell(robocopy \"D:\\\\GitTashkenta\\\\uzmulk\" \"D:\\\\GitTashkenta\\\\uzmullk\" /E /XD \".git\" /NFL /NDL /NJH /NJS)",
+      "Bash(npm run *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(gh run *)",
+      "Bash(git remote *)"
     ]
   }
 }

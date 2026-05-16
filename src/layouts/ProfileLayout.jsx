@@ -2,11 +2,12 @@ import { useState } from "react";
 import { NavLink, Outlet, useNavigate, useMatch } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
-  UserCircle, CreditCard, Building2, FileText,
+  UserCircle, CreditCard, FileText,
   Settings2, MessageSquare, Shield, Receipt,
   ClipboardList, ChevronRight, Menu, X, LogOut,
 } from "lucide-react";
 import useAuthStore from "@/store/useAuthStore";
+import Building2Icon from "@/assets/svg/Building2Icon";
 
 function Sidebar({ onClose }) {
   const { t } = useTranslation();
@@ -17,7 +18,7 @@ function Sidebar({ onClose }) {
   const NAV_ITEMS = [
     { to: "personal",         icon: UserCircle,    label: t("navPersonal") },
     { to: "cards",            icon: CreditCard,    label: t("navCards") },
-    { to: "property",         icon: Building2,     label: t("navProperty") },
+    { to: "property",         icon: Building2Icon, label: t("navProperty") },
     { to: "applications",     icon: FileText,      label: t("navApplications"), badge: 2 },
     { to: "settings",         icon: Settings2,     label: t("navSettings") },
     { to: "requests",         icon: MessageSquare, label: t("navRequests") },

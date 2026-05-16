@@ -1,4 +1,5 @@
-import { Shield, UserX, Calendar, Building2 } from "lucide-react";
+import { Shield, UserX, Calendar } from "lucide-react";
+import Building2Icon from "@/assets/svg/Building2Icon";
 
 export default function Access({ accesses = [], onRevoke, loading = false }) {
   return (
@@ -43,7 +44,7 @@ export default function Access({ accesses = [], onRevoke, loading = false }) {
                   <p className="text-[14px] font-semibold text-[#090A0A] truncate">{acc.name}</p>
                   <div className="flex items-center gap-3 mt-1">
                     <span className="flex items-center gap-1 text-xs text-gray-400">
-                      <Building2 size={11} />
+                      <Building2Icon />
                       {acc.cadastre}
                     </span>
                     <span className="flex items-center gap-1 text-xs text-gray-400">

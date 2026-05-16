@@ -1,4 +1,5 @@
-import { Building2, Plus, ChevronRight, MapPin } from "lucide-react";
+import { Plus, ChevronRight, MapPin } from "lucide-react";
+import Building2Icon from "@/assets/svg/Building2Icon";
 
 const STATUS_STYLE = {
   active:   { label: "Faol",       className: "bg-green-100 text-green-700" },
@@ -15,7 +16,7 @@ function PropertyCard({ property, onClick }) {
       className="flex items-center gap-4 p-4 rounded-xl border border-[#E2E5EE] hover:border-[#172AB4]/30 hover:bg-[#172AB4]/3 cursor-pointer transition-all group"
     >
       <div className="w-12 h-12 rounded-xl bg-[#172AB4]/8 flex items-center justify-center shrink-0">
-        <Building2 size={22} className="text-[#172AB4]" />
+        <Building2Icon />
       </div>
       <div className="flex-1 min-w-0">
         <p className="text-[14px] font-semibold text-[#090A0A] truncate">{property.address ?? "Manzil ko'rsatilmagan"}</p>
@@ -41,7 +42,7 @@ export default function MyProperty({ properties = [], onAddProperty, onSelectPro
       <div className="flex items-center justify-between px-6 py-5 border-b border-[#E2E5EE]">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-[#172AB4]/10 flex items-center justify-center">
-            <Building2 size={20} className="text-[#172AB4]" />
+            <Building2Icon />
           </div>
           <div>
             <h2 className="text-[16px] font-semibold text-[#090A0A]">Mening mulklarim</h2>
@@ -67,7 +68,7 @@ export default function MyProperty({ properties = [], onAddProperty, onSelectPro
         ) : properties.length === 0 ? (
           <div className="py-12 flex flex-col items-center gap-3 text-center">
             <div className="w-14 h-14 rounded-2xl bg-gray-100 flex items-center justify-center">
-              <Building2 size={24} className="text-gray-300" />
+              <Building2Icon />
             </div>
             <p className="text-sm text-gray-400">Hali mulk qo'shilmagan</p>
           </div>

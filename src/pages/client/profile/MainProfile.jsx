@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import {
-  Building2, FileText, MessageSquare, Receipt,
+  FileText, MessageSquare, Receipt,
   UserCircle, ChevronRight, Shield, CreditCard,
 } from "lucide-react";
 import useAuthStore from "@/store/useAuthStore";
+import Building2Icon from "@/assets/svg/Building2Icon";
 
 const STAT_CARDS = [
-  { label: "Mulklar",    value: 0, icon: Building2,     color: "bg-blue-50 text-[#172AB4]",   to: "property" },
+  { label: "Mulklar",    value: 0, icon: Building2Icon,     color: "bg-blue-50 text-[#172AB4]",   to: "property" },
   { label: "Arizalar",   value: 0, icon: FileText,       color: "bg-green-50 text-green-600",   to: "applications" },
   { label: "So'rovlar",  value: 0, icon: MessageSquare,  color: "bg-yellow-50 text-yellow-600", to: "requests" },
   { label: "To'lovlar",  value: 0, icon: Receipt,        color: "bg-purple-50 text-purple-600", to: "payments" },
@@ -15,7 +16,7 @@ const STAT_CARDS = [
 const QUICK_LINKS = [
   { to: "personal",         icon: UserCircle,    label: "Shaxsiy ma'lumotlar",  desc: "Ma'lumotlaringizni tahrirlang" },
   { to: "cards",            icon: CreditCard,    label: "Mening kartalarim",    desc: "Karta qo'shish va boshqarish" },
-  { to: "property",         icon: Building2,     label: "Mening mulklarim",     desc: "Barcha obiektlaringiz" },
+  { to: "property",         icon: Building2Icon,     label: "Mening mulklarim",     desc: "Barcha obiektlaringiz" },
   { to: "access",           icon: Shield,        label: "Kirish huquqlari",     desc: "Boshqalarga berilgan huquqlar" },
 ];
 

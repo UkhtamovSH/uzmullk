@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { ArrowLeft, MapPin, Loader2 } from "lucide-react";
+import { useOutletContext } from "react-router-dom";
+import { MapPin, Loader2 } from "lucide-react";
 
 // Toshkent markazi — fallback koordinata
 const DEFAULT_COORDS = [41.2995, 69.2401];
@@ -10,7 +9,10 @@ const w = /** @type {any} */ (window);
 
 function loadYmaps() {
   return new Promise((resolve) => {
-    if (w.ymaps) { resolve(w.ymaps); return; }
+    if (w.ymaps) {
+      resolve(w.ymaps);
+      return;
+    }
     const script = document.createElement("script");
     script.src = "https://api-maps.yandex.ru/2.1/?lang=uz_UZ&load=package.full";
     script.async = true;
@@ -20,8 +22,6 @@ function loadYmaps() {
 }
 
 export default function PropertyMap() {
-  const { t } = useTranslation();
-  const navigate = useNavigate();
   const { card } = useOutletContext();
   const mapRef = useRef(null);
   const mapInstance = useRef(null);
@@ -47,7 +47,9 @@ export default function PropertyMap() {
             const geo = await ymaps.geocode(card.address, { results: 1 });
             const first = geo.geoObjects.get(0);
             if (first) coords = first.geometry.getCoordinates();
-          } catch (_) { /* geocode xatosi — default coords ishlatamiz */ }
+          } catch (_) {
+            /* geocode xatosi — default coords ishlatamiz */
+          }
         }
         if (destroyed) return;
 
@@ -61,13 +63,13 @@ export default function PropertyMap() {
           coords,
           {
             balloonContentHeader: card?.propertyType ?? "",
-            balloonContentBody:   card?.address ?? "",
-            hintContent:          card?.cadastre ?? "",
+            balloonContentBody: card?.address ?? "",
+            hintContent: card?.cadastre ?? "",
           },
           {
-            preset:    "islands#blueDotIconWithCaption",
+            preset: "islands#blueDotIconWithCaption",
             iconColor: "#172AB4",
-          }
+          },
         );
 
         map.geoObjects.add(placemark);
@@ -75,7 +77,10 @@ export default function PropertyMap() {
         mapInstance.current = map;
         setLoading(false);
       } catch (e) {
-        if (!destroyed) { setLoading(false); setError(true); }
+        if (!destroyed) {
+          setLoading(false);
+          setError(true);
+        }
       }
     }
 
@@ -90,39 +95,37 @@ export default function PropertyMap() {
   }, [card]);
 
   return (
-    <div className="px-4 sm:px-6 py-6 flex flex-col gap-5">
-
-      {/* ── Sarlavha ── */}
-      <div className="flex items-center gap-3">
-        <button
-          onClick={() => navigate("/profile/cards")}
-          className="hidden md:flex w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 items-center justify-center transition-colors shrink-0"
-        >
-          <ArrowLeft size={18} className="text-gray-600" strokeWidth={2.5} />
-        </button>
-        <h2 className="text-[22px] font-bold text-[#090A0A]">{t("propMap")}</h2>
-        <MapPin size={18} className="text-gray-300" />
-      </div>
-
+    <div className=" flex flex-col gap-5">
       {/* ── Manzil qatori ── */}
       {card?.address && (
         <div className="flex items-start gap-3 px-4 py-3 bg-[#F8F9FB] rounded-xl">
           <MapPin size={16} className="text-[#172AB4] shrink-0 mt-0.5" />
           <div>
-            <p className="text-[11px] text-gray-400 font-medium mb-0.5">{card.propertyType}</p>
-            <p className="text-[13px] font-semibold text-[#090A0A] leading-snug">{card.address}</p>
-            <p className="text-[11px] text-gray-400 font-mono mt-0.5">{card.cadastre}</p>
+            <p className="text-[11px] text-gray-400 font-medium mb-0.5">
+              {card.propertyType}
+            </p>
+            <p className="text-[13px] font-semibold text-[#090A0A] leading-snug">
+              {card.address}
+            </p>
+            <p className="text-[11px] text-gray-400 font-mono mt-0.5">
+              {card.cadastre}
+            </p>
           </div>
         </div>
       )}
 
       {/* ── Xarita ── */}
-      <div className="relative w-full rounded-2xl overflow-hidden border border-[#E2E5EE]" style={{ height: 480 }}>
+      <div
+        className="relative w-full rounded-2xl overflow-hidden border border-[#E2E5EE]"
+        style={{ height: 480 }}
+      >
         {/* Loading overlay */}
         {loading && (
           <div className="absolute inset-0 bg-gray-50 flex flex-col items-center justify-center gap-3 z-10">
             <Loader2 size={28} className="text-[#172AB4] animate-spin" />
-            <p className="text-sm text-gray-400 font-medium">Xarita yuklanmoqda…</p>
+            <p className="text-sm text-gray-400 font-medium">
+              Xarita yuklanmoqda…
+            </p>
           </div>
         )}
 
