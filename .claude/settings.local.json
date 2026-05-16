@@ -23,7 +23,11 @@
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
       "Bash(gh run *)",
-      "Bash(git remote *)"
+      "Bash(git remote *)",
+      "mcp__claude_ai_Figma__get_screenshot",
+      "mcp__claude_ai_Figma__get_design_context",
+      "mcp__claude_ai_Figma__get_metadata",
+      "Bash(curl -s -o \"C:\\\\Users\\\\user\\\\figma_screenshot.png\" \"https://www.figma.com/api/mcp/asset/88139641-0156-4090-a518-088a9befb713\")"
     ]
   }
 }

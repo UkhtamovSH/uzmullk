@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   NavLink,
   Outlet,
@@ -8,21 +8,17 @@ import {
   useLocation,
 } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import {
-  AlertCircle,
-  PenLine,
-  Users,
-  MapPin,
-  HomeIcon,
-  MessageSquare,
-  KeyRound,
-  ArrowLeft,
-  Menu,
-  X,
-} from "lucide-react";
+import { ArrowLeft, Menu, X } from "lucide-react";
 import useCardsStore from "@/store/useCardsStore";
 import ArrowCircleLeftIcon from "@/assets/svg/ArrowCircleLeftIcon";
-import ZapIcon from "@/assets/svg/ZapIcon";
+import FlashIcon from "@/assets/svg/FlashIcon";
+import InfoCircleIcon from "@/assets/svg/InfoCircleIcon";
+import EdiSideIcon from "@/assets/svg/EdiSideIcon";
+import ProfileUserIcon from "@/assets/svg/ProfileUserIcon";
+import LocationIcon from "@/assets/svg/LocationIcon";
+import SafeHomeIcon from "@/assets/svg/SafeHomeIcon";
+import HomeSideIcon from "@/assets/svg/HomeSideIcon";
+import KeySquareIcon from "@/assets/svg/KeySquareIcon";
 import PassportPreview from "@/components/client/profile/PassportPreview";
 
 /* ── Har bir sahifa uchun sarlavha konfiguratsiyasi ─────────────────── */
@@ -72,14 +68,14 @@ function NavList({ basePath, debt, onClose }) {
   const { t } = useTranslation();
 
   const NAV_ITEMS = [
-    { to: "payments", icon: ZapIcon, tKey: "propPayments", debt },
-    { to: "info", icon: AlertCircle, tKey: "propInfo" },
-    { to: "residents", icon: PenLine, tKey: "propResidents" },
-    { to: "tenants", icon: Users, tKey: "propTenants" },
-    { to: "map", icon: MapPin, tKey: "propMap" },
-    { to: "services", icon: HomeIcon, tKey: "propServices" },
-    { to: "requests", icon: MessageSquare, tKey: "propRequests" },
-    { to: "access", icon: KeyRound, tKey: "propAccess" },
+    { to: "payments", icon: FlashIcon, tKey: "propPayments", debt },
+    { to: "info", icon: InfoCircleIcon, tKey: "propInfo" },
+    { to: "residents", icon: EdiSideIcon, tKey: "propResidents" },
+    { to: "tenants", icon: ProfileUserIcon, tKey: "propTenants" },
+    { to: "map", icon: LocationIcon, tKey: "propMap" },
+    { to: "services", icon: SafeHomeIcon, tKey: "propServices" },
+    { to: "requests", icon: HomeSideIcon, tKey: "propRequests" },
+    { to: "access", icon: KeySquareIcon, tKey: "propAccess" },
   ];
 
   return (
@@ -90,31 +86,22 @@ function NavList({ basePath, debt, onClose }) {
           to={`${basePath}/${to}`}
           onClick={onClose}
           className={({ isActive }) =>
-            `flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] transition-all group ${
+            `flex items-center gap-2.5 p-2.5 rounded-xl text-[14px] transition-all group ${
               isActive
-                ? "bg-[#F0F4FF] text-[#172AB4]"
-                : "text-[#4A4F68] hover:bg-gray-50 hover:text-[#172AB4]"
+                ? "bg-[#F1F5F9] text-[#18181B]"
+                : "text-[#18181B] hover:bg-[#F1F5F9]"
             }`
           }
         >
-          {({ isActive }) => (
+          {() => (
             <>
-              <Icon
-                size={17}
-                className={
-                  isActive
-                    ? "text-[#172AB4] shrink-0"
-                    : "text-gray-400 group-hover:text-[#172AB4] shrink-0"
-                }
-              />
+              <Icon size={20} className="text-[#18181B] shrink-0" />
               <div className="flex-1 min-w-0">
-                <span
-                  className={`block truncate font-semibold ${isActive ? "text-[#172AB4]" : "text-[#4A4F68]"}`}
-                >
+                <span className="block truncate font-semibold text-[14px] text-[#18181B]">
                   {t(tKey)}
                 </span>
                 {itemDebt && (
-                  <span className="block text-[11px] text-red-500 font-semibold mt-0.5">
+                  <span className="block text-[12px] text-[#FF2F2F] font-semibold mt-0.5">
                     {t("propDebt")}: {itemDebt}
                   </span>
                 )}
@@ -135,6 +122,10 @@ export default function PropertyDetail() {
   const location = useLocation();
   const card = useCardsStore((s) => s.getCard(id));
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
 
   if (!card) return <Navigate to="/profile/cards" replace />;
 
