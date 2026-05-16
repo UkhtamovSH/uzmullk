@@ -23,7 +23,7 @@ import {
 import useCardsStore from "@/store/useCardsStore";
 import ArrowCircleLeftIcon from "@/assets/svg/ArrowCircleLeftIcon";
 import ZapIcon from "@/assets/svg/ZapIcon";
-import PassportFront from "@/assets/Front.png";
+import PassportPreview from "@/components/client/profile/PassportPreview";
 
 /* ── Har bir sahifa uchun sarlavha konfiguratsiyasi ─────────────────── */
 const HEADER_CONFIG = {
@@ -59,60 +59,11 @@ function SectionHeader({ tKey }) {
 /* ── Mini passport (sidebar uchun) ──────────────────────────────────── */
 function MiniPassport({ card }) {
   return (
-    <div
-      className="relative rounded-xl overflow-hidden shadow-sm mx-auto"
-      style={{
-        width: "284px",
-        height: "180px",
-        backgroundImage: `url(${PassportFront})`,
-        backgroundSize: "100% 100%",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      {/* OBYEKT TURI value */}
-      <div
-        className="absolute"
-        style={{ left: "8px", right: "45px", top: "60px" }}
-      >
-        <p
-          className="font-semibold text-[#090A0A] leading-tight truncate"
-          style={{ fontSize: "7px" }}
-        >
-          {card.propertyType ?? "—"}
-        </p>
-      </div>
-
-      {/* KADASTR RAQAMI value */}
-      <div
-        className="absolute"
-        style={{ left: "8px", right: "45px", top: "87px" }}
-      >
-        <p
-          className="font-medium text-[#090A0A] truncate"
-          style={{
-            fontSize: "12px",
-            fontFamily: "monospace",
-            letterSpacing: "0.02em",
-          }}
-        >
-          {card.cadastre ?? "—"}
-        </p>
-      </div>
-
-      {/* MANZIL value */}
-      <div
-        className="absolute"
-        style={{ left: "8px", right: "75px", top: "120px" }}
-      >
-        <p
-          className="font-medium text-[#090A0A] leading-snug"
-          style={{ fontSize: "7px" }}
-        >
-          {card.address ?? "—"}
-        </p>
-      </div>
-    </div>
+    <PassportPreview
+      card={card}
+      className="rounded-xl shadow-sm mx-auto"
+      style={{ width: "284px" }}
+    />
   );
 }
 

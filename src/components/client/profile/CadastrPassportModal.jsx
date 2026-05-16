@@ -1,5 +1,6 @@
 import { X, ChevronRight, AlertCircle } from "lucide-react";
 import { useState } from "react";
+import PassportPreview from "./PassportPreview";
 
 const DETAIL_ROWS = [
   { label: "Umumiy yer uchastkasi maydoni (m²)",        key: "totalArea" },
@@ -20,84 +21,10 @@ const EXTRA_ROWS = [
 
 function PassportCard({ data }) {
   return (
-    <div
-      className="mx-4 mt-4 rounded-2xl overflow-hidden shadow-lg relative"
-      style={{
-        background: "linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 20%, #80cbc4 40%, #b2dfdb 60%, #c5e1a5 80%, #dcedc8 100%)",
-        minHeight: 180,
-      }}
-    >
-      {/* Security pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg, #006400 0px, #006400 1px, transparent 1px, transparent 8px), repeating-linear-gradient(-45deg, #006400 0px, #006400 1px, transparent 1px, transparent 8px)",
-        }}
-      />
-
-      {/* Header strip */}
-      <div className="relative flex items-start justify-between px-4 pt-3 pb-1">
-        <div className="flex-1">
-          <p className="text-[9px] font-semibold text-green-900 leading-tight uppercase tracking-widest">
-            Ko'chmas mulk ob'yektining
-          </p>
-          <p
-            className="text-[18px] font-black uppercase text-green-900 leading-tight tracking-wide"
-            style={{ textShadow: "0 1px 2px rgba(0,100,0,0.2)" }}
-          >
-            KADASTR PASPORTI
-          </p>
-        </div>
-        {/* Flag */}
-        <div className="flex flex-col items-center ml-3 shrink-0">
-          <div className="w-10 h-7 rounded-sm overflow-hidden border border-green-700/30 shadow-sm flex flex-col">
-            <div className="flex-1 bg-[#1DC7E0]" />
-            <div className="h-px bg-white" />
-            <div className="flex-1 bg-white" />
-            <div className="h-px bg-white" />
-            <div className="flex-1 bg-[#1AA01A]" />
-          </div>
-          <span className="text-[8px] font-bold text-green-900 mt-0.5">UZ</span>
-        </div>
-      </div>
-
-      {/* Divider line */}
-      <div className="mx-4 h-px bg-green-800/20 mb-2" />
-
-      {/* Fields */}
-      <div className="relative px-4 pb-3 space-y-2">
-        <div>
-          <p className="text-[8px] font-bold text-green-800/60 uppercase tracking-widest">
-            Obyekt turi
-          </p>
-          <p className="text-[11px] font-semibold text-green-900 leading-tight">
-            {data.propertyType ?? "Turar joy"}
-          </p>
-        </div>
-
-        <div>
-          <p className="text-[8px] font-bold text-green-800/60 uppercase tracking-widest">
-            Kadastr raqami
-          </p>
-          <p
-            className="text-[15px] font-black text-green-900 tracking-widest leading-tight"
-            style={{ fontFamily: "monospace" }}
-          >
-            {data.cadastre ?? "—"}
-          </p>
-        </div>
-
-        <div>
-          <p className="text-[8px] font-bold text-green-800/60 uppercase tracking-widest">
-            Manzil
-          </p>
-          <p className="text-[10px] font-medium text-green-900 leading-snug">
-            {data.address ?? "—"}
-          </p>
-        </div>
-      </div>
-    </div>
+    <PassportPreview
+      card={data}
+      className="mx-4 mt-4 rounded-2xl shadow-lg shrink-0"
+    />
   );
 }
 
@@ -127,19 +54,6 @@ export default function CadastrPassportModal({ data = {}, onClose, onSave }) {
 
         {/* Passport card */}
         <PassportCard data={data} />
-
-        {/* Status badge */}
-        <div className="px-4 mt-3 shrink-0">
-          <span
-            className={`inline-block w-full text-center text-[11px] font-black tracking-widest uppercase py-2 rounded-lg border ${
-              data.isActive
-                ? "bg-green-50 text-green-700 border-green-200"
-                : "bg-gray-50 text-gray-400 border-gray-200"
-            }`}
-          >
-            {data.isActive ? "FAOL" : "NOFAOL"}
-          </span>
-        </div>
 
         {/* Body */}
         <div className="flex-1 overflow-y-auto">

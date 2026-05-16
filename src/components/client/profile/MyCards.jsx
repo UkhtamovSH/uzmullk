@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AddCircleIcon from "@/assets/svg/AddCircleIcon";
+import PassportPreview from "./PassportPreview";
 
 /* ── Katta passport karta ────────────────────────────────────────────── */
 function PassportCardFull({ card, onClick }) {
@@ -8,106 +9,17 @@ function PassportCardFull({ card, onClick }) {
   return (
     <div
       onClick={() => onClick?.(card)}
-      className="rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-shadow border border-green-200 relative select-none"
-      style={{
-        background:
-          "linear-gradient(135deg,#c8e6c9 0%,#a5d6a7 15%,#80cbc4 35%,#b2dfdb 55%,#c5e1a5 75%,#dcedc8 100%)",
-      }}
+      className="rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-shadow border border-[#E2E5EE] relative select-none bg-white"
     >
-      {/* Xavfsizlik naqsh */}
-      <div
-        className="absolute inset-0 opacity-[0.07]"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg,#006400 0px,#006400 1px,transparent 1px,transparent 8px)," +
-            "repeating-linear-gradient(-45deg,#006400 0px,#006400 1px,transparent 1px,transparent 8px)",
-        }}
-      />
+      <PassportPreview card={card} />
 
-      {/* Watermark */}
-      <div
-        className="absolute right-0 bottom-0 w-44 h-32 opacity-[0.12]"
-        style={{
-          background:
-            "radial-gradient(circle at 70% 60%,#2e7d32 0%,transparent 60%)," +
-            "radial-gradient(circle at 30% 40%,#00695c 0%,transparent 50%)",
-        }}
-      />
-
-      <div className="relative p-4">
-        {/* Sarlavha + bayroq */}
-        <div className="flex items-start justify-between mb-3">
-          <div className="flex-1 pr-2">
-            <p className="text-[9px] font-semibold text-green-900/60 uppercase tracking-widest leading-tight">
-              Ko'chmas mulk ob'yektining
-            </p>
-            <p
-              className="text-[19px] font-black text-green-900 uppercase leading-tight tracking-wide"
-              style={{ textShadow: "0 1px 2px rgba(0,80,0,0.12)" }}
-            >
-              KADASTR PASPORTI
-            </p>
-          </div>
-          {/* UZ bayrog'i */}
-          <div className="shrink-0">
-            <div className="w-11 h-8 rounded-[3px] overflow-hidden border border-green-700/20 shadow-sm flex flex-col">
-              <div className="flex-1 bg-[#1DC7E0]" />
-              <div className="h-[2px] bg-white" />
-              <div className="flex-1 bg-white" />
-              <div className="h-[2px] bg-white" />
-              <div className="flex-1 bg-[#1AA01A]" />
-            </div>
-          </div>
-        </div>
-
-        {/* Maydonlar */}
-        <div className="space-y-2">
-          <div>
-            <p className="text-[8px] font-bold text-green-800/50 uppercase tracking-widest">
-              Obyekt turi
-            </p>
-            <p className="text-[12px] font-semibold text-green-900 leading-tight">
-              {card.propertyType ?? "Ko'chmas mulk"}
-            </p>
-          </div>
-
-          <div>
-            <p className="text-[8px] font-bold text-green-800/50 uppercase tracking-widest">
-              Kadastr raqami
-            </p>
-            <p
-              className="text-[16px] font-black text-green-900 tracking-widest leading-tight"
-              style={{ fontFamily: "monospace" }}
-            >
-              {card.cadastre ?? "—"}
-            </p>
-          </div>
-
-          <div>
-            <p className="text-[8px] font-bold text-green-800/50 uppercase tracking-widest">
-              Manzil
-            </p>
-            <p className="text-[11px] font-medium text-green-900 leading-snug">
-              {card.address ?? "—"}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Status banneri */}
-      {isRestricted ? (
+      {isRestricted && (
         <div className="bg-red-500 py-2.5 text-center">
           <span className="text-white text-[12px] font-black uppercase tracking-widest">
             Taqiq
           </span>
         </div>
-      ) : !card.isActive ? (
-        <div className="bg-white/70 py-2 text-center border-t border-green-200/50">
-          <span className="text-gray-400 text-[11px] font-bold uppercase tracking-widest">
-            Nofaol
-          </span>
-        </div>
-      ) : null}
+      )}
     </div>
   );
 }
