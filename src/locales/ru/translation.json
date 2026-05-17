@@ -213,5 +213,35 @@
   "statusAccepted":    "Принято",
   "statusRejected":    "Отказано",
   "statusPending":     "В ожидании",
-  "noRequests":        "Запросов нет"
+  "noRequests":        "Запросов нет",
+
+  "notificationsTitle": "Уведомления",
+  "notificationsSummary_one": "У вас {{count}} новое уведомление!",
+  "notificationsSummary_few": "У вас {{count}} новых уведомления!",
+  "notificationsSummary_many": "У вас {{count}} новых уведомлений!",
+  "notificationsSummary_other": "У вас {{count}} новых уведомлений!",
+  "notificationsMarkAll": "Отметить все как прочитанные",
+  "notificationToday": "Сегодня",
+  "notificationYesterday": "Вчера",
+  "notificationItemTitleUnread": "Уведомление!",
+  "notificationItemTitleRead": "Прочитано",
+  "notificationItemMessage": "Вам поступило уведомление",
+  "notificationItemHelper": "Чтобы прочитать нажмите на это сообщение или зажмите для больших действий",
+  "notificationPreviewTitle": "Вам поступило уведомление",
+  "notificationPreviewDescription": "Это ваш шанс обновить свой автомобиль по невероятно выгодной цене. Не упустите возможность, узнайте все детали, нажав на это сообщение!",
+  "notificationDetailsButton": "Подробнее",
+  "notificationRequestStateInactive": "НЕАКТИВНО",
+  "notificationDeleted": "Уведомление удалено",
+  "notificationMarkRead": "Отметить прочитанным",
+  "notificationDeleteConfirm": "Вы действительно хотите удалить это уведомление? После удаления, это уведомление будет удалено без возможности восстановления.",
+  "notificationFilter": {
+    "all": "Label",
+    "payments": "Label",
+    "services": "Label",
+    "system": "Label"
+  },
+  "close": "Закрыть",
+  "delete": "Удалить",
+  "continue": "Далее",
+  "cancel": "Отмена"
 }

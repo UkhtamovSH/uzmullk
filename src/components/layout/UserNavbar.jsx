@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { ChevronDown, LayoutDashboard, LogOut, Menu, X } from "lucide-react";
+import { LayoutDashboard, LogOut, Menu, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import useAuthStore from "@/store/useAuthStore";
 import LangDropdown from "@/components/ui/LangDropdown";
+import NavbarNotificationButton from "@/components/ui/NavbarNotificationButton";
 import AddCircleIcon from "@/assets/svg/AddCircleIcon";
+import ProfileUserIcon from "@/assets/svg/ProfileUserIcon";
 import brandLogo from "@/assets/brandDark2.svg";
 import CadastreModal from "@/components/client/home/CadastreModal";
 
@@ -32,7 +34,6 @@ export default function UserNavbar() {
   const [userOpen, setUserOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const userRef = useRef(null);
 
   useEffect(() => {
@@ -42,14 +43,6 @@ export default function UserNavbar() {
     }
     document.addEventListener("mousedown", handleOutside);
     return () => document.removeEventListener("mousedown", handleOutside);
-  }, []);
-
-  useEffect(() => {
-    function handleScroll() {
-      setScrolled(window.scrollY > 20);
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -104,20 +97,12 @@ export default function UserNavbar() {
               <div className="relative" ref={userRef}>
                 <button
                   onClick={() => setUserOpen((v) => !v)}
-                  className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg hover:bg-gray-100 transition-colors"
+                  className="flex h-[42px] items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 text-sm font-semibold text-[#090A0A] transition-colors hover:border-gray-300 hover:bg-gray-50"
                 >
-                  <div className="w-7 h-7 rounded-full bg-[#172AB4]/10 flex items-center justify-center shrink-0">
-                    <span className="text-xs font-bold text-[#172AB4]">
-                      {user.name?.[0]?.toUpperCase() ?? "U"}
-                    </span>
-                  </div>
-                  <span className="text-sm font-medium text-gray-900 hidden sm:block">
+                  <ProfileUserIcon size={20} className="shrink-0 text-[#090A0A]" />
+                  <span className="hidden text-sm font-semibold text-[#090A0A] sm:block">
                     {user.name}
                   </span>
-                  <ChevronDown
-                    size={14}
-                    className={`text-gray-400 transition-transform duration-200 ${userOpen ? "rotate-180" : ""}`}
-                  />
                 </button>
 
                 {userOpen && (
@@ -159,6 +144,7 @@ export default function UserNavbar() {
               </Link>
             )}
 
+            <NavbarNotificationButton />
             <LangDropdown />
           </div>
 

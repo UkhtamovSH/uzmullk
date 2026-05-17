@@ -213,5 +213,33 @@
   "statusAccepted":    "Qabul qilindi",
   "statusRejected":    "Rad etildi",
   "statusPending":     "Kutilmoqda",
-  "noRequests":        "So'rovlar mavjud emas"
+  "noRequests":        "So'rovlar mavjud emas",
+
+  "notificationsTitle": "Bildirishnomalar",
+  "notificationsSummary_one": "Sizda {{count}} ta yangi bildirishnoma bor!",
+  "notificationsSummary_other": "Sizda {{count}} ta yangi bildirishnoma bor!",
+  "notificationsMarkAll": "Barchasini o'qilgan deb belgilash",
+  "notificationToday": "Bugun",
+  "notificationYesterday": "Kecha",
+  "notificationItemTitleUnread": "Bildirishnoma!",
+  "notificationItemTitleRead": "O'qilgan",
+  "notificationItemMessage": "Sizga yangi bildirishnoma keldi",
+  "notificationItemHelper": "O'qish uchun ushbu xabarga bosing yoki qo'shimcha amallar uchun bosib turing",
+  "notificationPreviewTitle": "Sizga bildirishnoma keldi",
+  "notificationPreviewDescription": "Bu sizning avtomobilingizni juda qulay narxda yangilash imkoniyatingiz. Imkoniyatni qo'ldan boy bermang, barcha tafsilotlarni ushbu xabar orqali bilib oling!",
+  "notificationDetailsButton": "Batafsil",
+  "notificationRequestStateInactive": "NOFAOL",
+  "notificationDeleted": "Bildirishnoma o'chirildi",
+  "notificationMarkRead": "O'qilgan qilish",
+  "notificationDeleteConfirm": "Haqiqatan ham ushbu bildirishnomani o'chirmoqchimisiz? O'chirilgandan keyin bu bildirishnomani qayta tiklab bo'lmaydi.",
+  "notificationFilter": {
+    "all": "Barchasi",
+    "payments": "To'lovlar",
+    "services": "Xizmatlar",
+    "system": "Tizim"
+  },
+  "close": "Yopish",
+  "delete": "O'chirish",
+  "continue": "Davom etish",
+  "cancel": "Bekor qilish"
 }
